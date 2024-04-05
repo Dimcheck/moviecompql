@@ -1,4 +1,6 @@
 from ariadne import ObjectType
+from sqlalchemy.orm import joinedload
+
 
 from app.enjoyers.models import Enjoyer
 from app.db.session import Session
@@ -25,6 +27,8 @@ def resolve_users(_, info):
 @query_user.field('user')
 def resolve_user(_, info, id):
     with Session() as session:
-        user = session.query(Enjoyer).get(id)
+        user = session.query(Enjoyer).options(
+            joinedload(Enjoyer.compilations)
+        ).get(id)
         return user.__dict__
 

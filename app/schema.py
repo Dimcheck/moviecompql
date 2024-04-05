@@ -4,9 +4,16 @@ from ariadne import gql
 query_defs = gql("""
     type Query {
         hello: String!
+
         user(id: Int): Enjoyer!
         users: [Enjoyer]!
-        movie: Movie
+
+        random_movie: Movie!
+        movie(id: Int): Movie!
+        movies: [Movie]!
+
+        compilation(id: Int): MovieCompilation!
+        compilations: [MovieCompilation]!
     }
 
 

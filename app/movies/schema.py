@@ -3,6 +3,7 @@ from ariadne import gql
 
 movie_defs = gql("""
     input CreateMovieCompilationInput {
+        enjoyer_id: Int!
         name: String!
     }
 
@@ -24,14 +25,16 @@ movie_defs = gql("""
     }
 
     type Movie {
+        id: Int
         name: String
         release_date: String
-        director: String!
-        cast: String!
-        compilations: [MovieCompilation]
+        director: String
+        cast: String
+        compilations: MovieCompilation
     }
 
     type MovieCompilation {
+        id: Int
         name: String!
         enjoyer_id: Int
         movies: [Movie]
